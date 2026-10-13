@@ -1,0 +1,95 @@
+{
+  "file": "garment_rfdetr_seg_s_576_q8.onnx",
+  "bytes": 43117196,
+  "sha256": "b6c1f73b6ace3d1b3a3c8e5a01a63d297aaf648f237328361c3624570cd65470",
+  "resolution": 576,
+  "io": {
+    "inputs": [
+      [
+        "input",
+        [
+          1,
+          3,
+          576,
+          576
+        ]
+      ]
+    ],
+    "outputs": [
+      [
+        "dets",
+        [
+          1,
+          100,
+          4
+        ]
+      ],
+      [
+        "labels",
+        [
+          1,
+          100,
+          47
+        ]
+      ],
+      [
+        "masks",
+        [
+          1,
+          100,
+          144,
+          144
+        ]
+      ]
+    ]
+  },
+  "classes": [
+    "shirt, blouse",
+    "top, t-shirt, sweatshirt",
+    "sweater",
+    "cardigan",
+    "jacket",
+    "vest",
+    "pants",
+    "shorts",
+    "skirt",
+    "coat",
+    "dress",
+    "jumpsuit",
+    "cape",
+    "glasses",
+    "hat",
+    "headband, head covering, hair accessory",
+    "tie",
+    "glove",
+    "watch",
+    "belt",
+    "leg warmer",
+    "tights, stockings",
+    "sock",
+    "shoe",
+    "bag, wallet",
+    "scarf",
+    "umbrella",
+    "hood",
+    "collar",
+    "lapel",
+    "epaulette",
+    "sleeve",
+    "pocket",
+    "neckline",
+    "buckle",
+    "zipper",
+    "applique",
+    "bead",
+    "bow",
+    "flower",
+    "fringe",
+    "ribbon",
+    "rivet",
+    "ruffle",
+    "sequin",
+    "tassel"
+  ],
+  "source": "https://huggingface.co/resoa/garment-detector-seg (Apache-2.0), trained on Fashionpedia (CC BY 4.0)"
+}
