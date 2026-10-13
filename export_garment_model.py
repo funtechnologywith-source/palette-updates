@@ -47,10 +47,15 @@ assert found, os.listdir('export_tmp')
 fp32 = found[0]
 
 int8 = os.path.join(out_dir, f'garment_rfdetr_seg_s_{res}_q8.onnx')
-# Per-channel keeps the int8 weights close to fp32; plain per-tensor reordered detections.
-quantize_dynamic(fp32, int8, weight_type=QuantType.QInt8, per_channel=True)
+# Only the matrix multiplies go int8 (MatMulInteger, like the other phone models):
+# onnxruntime-web has no ConvInteger, so int8 convolutions would not load on the phone.
+# Unsigned per-tensor weights, as onnxruntime-web's MatMulInteger expects.
+quantize_dynamic(fp32, int8, weight_type=QuantType.QUInt8, per_channel=False, op_types_to_quantize=['MatMul', 'Gemm'])
 
 m = onnx.load(int8)
+WEB_UNSUPPORTED = {'ConvInteger', 'QLinearConv'}
+bad = sorted({n.op_type for n in m.graph.node} & WEB_UNSUPPORTED)
+assert not bad, f'ops onnxruntime-web cannot run: {bad}'
 io = {
     'inputs': [(i.name, [d.dim_value or d.dim_param for d in i.type.tensor_type.shape.dim]) for i in m.graph.input],
     'outputs': [(o.name, [d.dim_value or d.dim_param for d in o.type.tensor_type.shape.dim]) for o in m.graph.output],

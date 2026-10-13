@@ -1,7 +1,7 @@
 {
   "file": "garment_rfdetr_seg_s_576_q8.onnx",
-  "bytes": 43117196,
-  "sha256": "b6c1f73b6ace3d1b3a3c8e5a01a63d297aaf648f237328361c3624570cd65470",
+  "bytes": 47903246,
+  "sha256": "a73bae64d5b524689d81152aefd247de271bf36bd8f6b49e3b5028b3a9b11fe9",
   "resolution": 576,
   "io": {
     "inputs": [
